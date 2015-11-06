@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.dao.UserDao">
+    
+	<!-- 获取用户列表信息 -->
+	<select id="getAllUser" resultType="java.util.Map">
+		select id,username,password from user_table 
+	</select>
+
+	<insert id="article" >
+		INSERT INTO article(article_title,article_content,article_date,article_img) VALUES(#{title},#{content},#{date},#{article_img})
+	</insert>
+	
+	<insert id="knowledge" >
+		INSERT INTO knowledge(knowledge_title,knowledge_content,knowledge_date) VALUES(#{title},#{content},#{date})
+	</insert>
+	
+	<select id="getallknowledge" resultType="java.util.Map">
+		select knowledge_id,knowledge_title,knowledge_content,knowledge_date from knowledge ORDER BY (knowledge_id) DESC 
+	</select>
+	
+	<select id="getallarticle" resultType="java.util.Map">
+		select article_title,article_content,article_date,article_img from article ORDER BY (article_id) DESC 
+	</select>
+	
+	<select id="getallimg" resultType="java.util.Map">
+		select img_url,img_date from lifeimage ORDER BY(img_id) DESC 
+	</select>
+	
+	<insert id="insertimg" >
+		INSERT INTO lifeimage(img_url,img_date) VALUES(#{img_url},#{img_date})
+	</insert>
+	
+	
+	<select id="readmore" resultType="String">
+		SELECT knowledge_content FROM knowledge WHERE knowledge_id=${id}
+	</select>
+</mapper>
